@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ survey.title }}</title>
+</head>
+<body>
+    <h1>{{ survey.title }}</h1>
+    <p>{{ survey.instructions }}</p>
+    <form action="{{ url_for('submit_survey') }}" method="POST">
+        {% for question in survey.questions %}
+            <div>
+                <p>{{ question.question }}</p>
+                {% if question.allow_text %}
+                    <textarea name="{{ question.question }}"></textarea>
+                {% else %}
+                    <select name="{{ question.question }}">
+                        {% for choice in question.choices %}
+                            <option value="{{ choice }}">{{ choice }}</option>
+                        {% endfor %}
+                    </select>
+                {% endif %}
+            </div>
+        {% endfor %}
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
+

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Satisfaction Survey</title>
+</head>
+<body>
+    <h1>Customer Satisfaction Survey</h1>
+    <form action="{{ url_for('submit_survey') }}" method="POST">
+        <input type="hidden" name="question.question" value="satisfaction">
+        <p>{{ survey.instructions }}</p>
+        {% for question in survey.questions %}
+            <p>{{ question.question }}</p>
+            <input type="text" name="{{ question.question }}">
+        {% endfor %}
+        <button type="submit">Submit Survey</button>
+    </form>
+</body>
+</html>
+

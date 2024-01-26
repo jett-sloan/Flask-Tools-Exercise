@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survey Index</title>
+</head>
+<body>
+    <h1>Available Surveys</h1>
+    <ul>
+        {% for survey_name, survey in surveys.items() %}
+            <li><a href="{{ url_for('get_q', survey_name=survey_name) }}">{{ survey.title }}</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
+
+
